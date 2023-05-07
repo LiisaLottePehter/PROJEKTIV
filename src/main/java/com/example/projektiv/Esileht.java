@@ -17,6 +17,8 @@ import javafx.stage.Stage;
 import java.io.FileInputStream;
 import java.io.InputStream;
 
+import static javafx.scene.paint.Color.BEIGE;
+
 public class Esileht extends Application {
 
     @Override
@@ -34,7 +36,9 @@ public class Esileht extends Application {
         Label pealeht3 = new Label("Vajutades nupule 'Jätka' saad valida kolme suuna vahel.");
         Button jätka = new Button("Jätka");
         VBox layout0 = new VBox(20);
+        layout0.setStyle("-fx-background-color: #F2F2DC;");
         layout0.setPadding(new Insets(30, 30, 30, 30));
+
         layout0.getChildren().addAll(iw, pealeht, pealeht2, pealeht3, jätka);
 
         Scene stseen0 = new Scene(layout0, 625, 525);
@@ -54,7 +58,7 @@ public class Esileht extends Application {
 
             Button valinupp = new Button("Vali");
             VBox layout = new VBox(20);
-
+            layout.setStyle("-fx-background-color: #F0F0DC;");
             layout.setPadding(new Insets(30, 30, 30, 30));
             layout.getChildren().addAll(label1, reaal, loodus, humanitaar, valinupp);
 
@@ -65,6 +69,22 @@ public class Esileht extends Application {
                     ReaalKüsimused reaalKüsimused = new ReaalKüsimused();
                     try {
                         reaalKüsimused.start(stage);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                else if(loodus.isSelected()){
+                    LoodusKüsimused loodusKüsimused = new LoodusKüsimused();
+                    try {
+                        loodusKüsimused.start(stage);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                else if(humanitaar.isSelected()){
+                    HumanitaarKüsimused humanitaarKüsimused = new HumanitaarKüsimused();
+                    try {
+                        humanitaarKüsimused.start(stage);
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }

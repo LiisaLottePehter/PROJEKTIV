@@ -34,7 +34,7 @@ public class ReaalKüsimused extends Application {
         küsimus(stage);
     }
     public void küsimus(Stage stage){
-        if(loendur != loetud.size()-1) {
+        if(loendur != loetud.size()) {
             String[] osad = loetud.get(loendur).split(" - ");
             Label label = new Label(osad[0]);
             RadioButton mat = new RadioButton(osad[1]);
@@ -62,15 +62,23 @@ public class ReaalKüsimused extends Application {
                 küsimus(stage);
             });
             VBox layout = new VBox(20);
+            layout.setStyle("-fx-background-color: #F2F2DC;");
             layout.setPadding(new Insets(30, 30, 30, 30));
             layout.getChildren().addAll(label, mat, inf, maj, valik);
 
             Scene stseen = new Scene(layout, 625, 525);
             stage.setScene(stseen);
-
-
             stage.show();
 
+            }else if (loendur == loetud.size()){
+                Label tulemus = new Label("Sinu tulemus on......");
+                VBox layout = new VBox(20);
+                layout.setStyle("-fx-background-color: #F2F2DC;");
+                layout.setPadding(new Insets(30, 30, 30, 30));
+                layout.getChildren().addAll(tulemus);
+
+                Scene stseen = new Scene(layout, 625, 525);
+                stage.setScene(stseen);
             }
         }
 
