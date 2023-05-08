@@ -2,22 +2,17 @@ package com.example.projektiv;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-
-import static javafx.scene.paint.Color.BEIGE;
 
 public class Esileht extends Application {
 
@@ -45,52 +40,53 @@ public class Esileht extends Application {
 
         jätka.setOnAction(e -> {
             //Valik, mis küsimustikule soovib vastata
-            Label label1 = new Label("Millise suuna küsimustikku sooviksid täita");
-            RadioButton reaal = new RadioButton("Reaalsuund");
-            RadioButton loodus = new RadioButton("Loodussuund");
-            RadioButton humanitaar = new RadioButton("Humanitaarsuund");
-
-            ToggleGroup grupp1 = new ToggleGroup();
-            reaal.setToggleGroup(grupp1);
-            loodus.setToggleGroup(grupp1);
-            humanitaar.setToggleGroup(grupp1);
-
+            Label label1 = new Label("Millise suuna küsimustikku sooviksid täita, valikus on: reaalsuund(R), loodussuund(L), humanitaarsuund(H)");
+            TextField vastus = new TextField();
 
             Button valinupp = new Button("Vali");
             VBox layout = new VBox(20);
             layout.setStyle("-fx-background-color: #F0F0DC;");
             layout.setPadding(new Insets(30, 30, 30, 30));
-            layout.getChildren().addAll(label1, reaal, loodus, humanitaar, valinupp);
+            layout.getChildren().addAll(label1, vastus, valinupp);
 
             Scene stseen1 = new Scene(layout, 625, 525);
 
             valinupp.setOnAction(k -> {
-                if (reaal.isSelected()) {
-                    ReaalKüsimused reaalKüsimused = new ReaalKüsimused();
-                    try {
-                        reaalKüsimused.start(stage);
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
+                String valik = vastus.getText();
+                    if (valik.equals("R")) {
+                        ReaalKüsimused reaalKüsimused = new ReaalKüsimused();
+                        try {
+                            reaalKüsimused.start(stage);
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    } else if (valik.equals("L")) {
+                        LoodusKüsimused loodusKüsimused = new LoodusKüsimused();
+                        try {
+                            loodusKüsimused.start(stage);
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    } else if (valik.equals("H")) {
+                        HumanitaarKüsimused humanitaarKüsimused = new HumanitaarKüsimused();
+                        try {
+                            humanitaarKüsimused.start(stage);
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }else {
+                        Stage uus = new Stage();
+                        VBox veateateaken = new VBox(10);
+                        layout.setStyle("-fx-background-color: #F0F0DC;");
+                        layout.setPadding(new Insets(30, 30, 30, 30));
+                        Text valeValik = new Text("Vale valik, palun valige uuesti.");
+                        valeValik.setTextAlignment(TextAlignment.CENTER);
+                        veateateaken.getChildren().add(valeValik);
+                        Scene veateateStseen = new Scene(veateateaken, 200, 100);
+                        uus.setScene(veateateStseen);
+                        uus.show();
                     }
-                }
-                else if(loodus.isSelected()){
-                    LoodusKüsimused loodusKüsimused = new LoodusKüsimused();
-                    try {
-                        loodusKüsimused.start(stage);
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-                else if(humanitaar.isSelected()){
-                    HumanitaarKüsimused humanitaarKüsimused = new HumanitaarKüsimused();
-                    try {
-                        humanitaarKüsimused.start(stage);
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
             });
-
             stage.setScene(stseen1);
             stage.show();
         });
