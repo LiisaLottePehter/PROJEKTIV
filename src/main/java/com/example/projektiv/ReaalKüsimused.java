@@ -132,6 +132,7 @@ public class ReaalKüsimused extends Application {
             Scene stseen = new Scene(layout, 625, 525);
             stage.setScene(stseen);
 
+
         }
     }
 
