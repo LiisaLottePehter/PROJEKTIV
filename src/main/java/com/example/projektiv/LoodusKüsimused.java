@@ -67,7 +67,16 @@ public class LoodusKüsimused {
             Scene stseen = new Scene(layout, 625, 525);
             stage.setScene(stseen);
             stage.show();
+        }
+        else if (loendur == loetud.size()){
+            Label tulemus = new Label("Sinu tulemus on......");
+            VBox layout = new VBox(20);
+            layout.setStyle("-fx-background-color: #F2F2DC;");
+            layout.setPadding(new Insets(30, 30, 30, 30));
+            layout.getChildren().addAll(tulemus);
 
+            Scene stseen = new Scene(layout, 625, 525);
+            stage.setScene(stseen);
         }
     }
 
