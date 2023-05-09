@@ -1,8 +1,11 @@
 package com.example.projektiv;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -70,41 +73,66 @@ public class ReaalKüsimused extends Application {
             Scene stseen = new Scene(layout, 625, 525);
             stage.setScene(stseen);
             stage.show();
-
-            }else if (loendur == loetud.size()){
-                if(matT.size() > majT.size() && matT.size()>infT.size()){
-                    Text tulemus = new Text("Sobid matemaatikasse");
-                    VBox layout = new VBox(20);
-                    layout.setStyle("-fx-background-color: #F2F2DC;");
-                    layout.setPadding(new Insets(30, 30, 30, 30));
-                    layout.getChildren().addAll(tulemus);
-
-                    Scene stseen = new Scene(layout, 625, 525);
-                    stage.setScene(stseen);
-                }
-                else if(majT.size() > matT.size() && majT.size() > infT.size()){
-                    Text tulemus = new Text("Sobid majandusse");
-                    Text protsent = new Text(protsendid(majT, loetud));
-                    VBox layout = new VBox(20);
-                    layout.setStyle("-fx-background-color: #F2F2DC;");
-                    layout.setPadding(new Insets(30, 30, 30, 30));
-                    layout.getChildren().addAll(tulemus, protsent);
-
-                    Scene stseen = new Scene(layout, 625, 525);
-                    stage.setScene(stseen);
-                }
-                else if(infT.size() > majT.size() && infT.size() >matT.size()){
-                    Text tulemus = new Text("Sobid informaatikasse");
-                    VBox layout = new VBox(20);
-                    layout.setStyle("-fx-background-color: #F2F2DC;");
-                    layout.setPadding(new Insets(30, 30, 30, 30));
-                    layout.getChildren().addAll(tulemus);
-
-                    Scene stseen = new Scene(layout, 625, 525);
-                    stage.setScene(stseen);
-                }
-            }
         }
+        else if (loendur == loetud.size()){
+            VBox layout = new VBox(20);
+            layout.setStyle("-fx-background-color: #F2F2DC;");
+            layout.setPadding(new Insets(30, 30, 30, 30));
+
+            //Võrdleme, millisele erialale sobib kõige paremini
+            if(matT.size() > majT.size() && matT.size()>infT.size()){
+                Text tulemus = new Text("Sobid matemaatikasse");
+                Text protsent = new Text(protsendid(matT, loetud) + "% vastuseid sobitavad sind kõige paremini matemaatikasse.");
+                layout.getChildren().addAll(tulemus, protsent);
+
+            }
+            else if(majT.size() > matT.size() && majT.size() > infT.size()){
+                Text tulemus = new Text("Sobid majandusse");
+                Text protsent = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini majandusse.");
+                layout.getChildren().addAll(tulemus, protsent);
+
+            }
+            else if(infT.size() > majT.size() && infT.size() >matT.size()){
+                Text tulemus = new Text("Sobid informaatikasse");
+                Text protsent = new Text(protsendid(infT, loetud) + "% vastuseid sobitavad sind kõige paremini informaatikasse.");
+                layout.getChildren().addAll(tulemus, protsent);
+
+            }
+            else if(matT.size() == majT.size()){
+                Text tulemus = new Text("Sobid nii majandusse kui matemaatikasse");
+                Text protsent = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini majandusse.");
+                Text protsent2 = new Text(protsendid(matT, loetud) + "% vastuseid sobitavad sind kõige paremini matemaatikasse.");
+
+                layout.getChildren().addAll(tulemus, protsent, protsent2);
+
+            }
+            else if(matT.size() == infT.size()){
+                Text tulemus = new Text("Sobid nii informaatikasse kui matemaatikasse");
+                Text protsent = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini informaatikasse.");
+                Text protsent2 = new Text(protsendid(matT, loetud) + "% vastuseid sobitavad sind kõige paremini matemaatikasse.");
+
+                layout.getChildren().addAll(tulemus, protsent, protsent2);
+            }
+            else if(infT.size() == majT.size()){
+                Text tulemus = new Text("Sobid nii informaatikasse kui majandusse");
+                Text protsent = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini informaatikasse.");
+                Text protsent2 = new Text(protsendid(matT, loetud) + "% vastuseid sobitavad sind kõige paremini majandusse.");
+
+                layout.getChildren().addAll(tulemus, protsent, protsent2);
+
+            }
+            //loome sektordiagrammi, kus tehakse võrdlus kõigi erialade vahel
+            ObservableList<PieChart.Data> sektordiagrammiSisu = FXCollections.observableArrayList(
+                    new PieChart.Data("Informaatika", infT.size()),
+                    new PieChart.Data("Majandus", majT.size()),
+                    new PieChart.Data("Matemaatika", matT.size())
+            );
+            PieChart sektordiagramm = new PieChart(sektordiagrammiSisu);
+            layout.getChildren().add(sektordiagramm);
+            Scene stseen = new Scene(layout, 625, 525);
+            stage.setScene(stseen);
+        }
+    }
 
     public String protsendid(ArrayList<Integer> üksList, ArrayList<String> teineList){
         int protsent = üksList.size() * 100/ teineList.size();
