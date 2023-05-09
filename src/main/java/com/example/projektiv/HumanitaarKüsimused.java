@@ -31,8 +31,10 @@ public class HumanitaarKüsimused {
         }
         küsimus(stage);
     }
-    public void küsimus(Stage stage){
-        if(loendur != loetud.size()) {
+
+    public void küsimus(Stage stage) {
+
+        if (loendur != loetud.size()) {
             String[] osad = loetud.get(loendur).split(" - ");
             Label label = new Label(osad[0]);
             RadioButton ajal = new RadioButton(osad[1]);
@@ -46,13 +48,11 @@ public class HumanitaarKüsimused {
 
             Button valik = new Button("Vali");
             valik.setOnAction(e -> {
-                if(ajal.isSelected()){
+                if (ajal.isSelected()) {
                     ajalT.add(1);
-                }
-                else if(ik.isSelected()){
+                } else if (ik.isSelected()) {
                     ikT.add(1);
-                }
-                else if(ek.isSelected()){
+                } else if (ek.isSelected()) {
                     ekT.add(1);
                 }
 
@@ -68,7 +68,7 @@ public class HumanitaarKüsimused {
             stage.setScene(stseen);
             stage.show();
 
-        }else if(loendur == loetud.size()){
+        } else if (loendur == loetud.size()) {
             Label tulemus = new Label("Sinu tulemus on......");
             VBox layout = new VBox(20);
             layout.setStyle("-fx-background-color: #F2F2DC;");
@@ -78,6 +78,7 @@ public class HumanitaarKüsimused {
             Scene stseen = new Scene(layout, 625, 525);
             stage.setScene(stseen);
         }
+
     }
 
 }

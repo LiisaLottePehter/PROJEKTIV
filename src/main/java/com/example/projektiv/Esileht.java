@@ -18,10 +18,10 @@ public class Esileht extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //InputStream is = new FileInputStream("tartuülikool.jpeg");
-        //Image pilt = new Image(is);
+        InputStream is = new FileInputStream("tartuulikool.jpeg");
+        Image pilt = new Image(is);
         ImageView iw = new ImageView();
-        //iw.setImage(pilt);
+        iw.setImage(pilt);
         iw.setFitHeight(500);
         iw.setFitWidth(567);
         iw.setPreserveRatio(true);
