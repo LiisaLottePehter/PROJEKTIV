@@ -47,17 +47,17 @@ public class HumanitaarKüsimused {
             ek.setToggleGroup(toggleGroup1);
 
             Button valik = new Button("Vali");
-            valik.setOnAction(e -> {
-                if (ajal.isSelected()) {
-                    ajalT.add(1);
-                } else if (ik.isSelected()) {
-                    ikT.add(1);
-                } else if (ek.isSelected()) {
-                    ekT.add(1);
-                }
 
-                loendur++;
-                küsimus(stage);
+            valik.setOnAction(e -> {
+                    if (ajal.isSelected()) {
+                        ajalT.add(1);
+                    } else if (ik.isSelected()) {
+                        ikT.add(1);
+                    } else if (ek.isSelected()) {
+                        ekT.add(1);
+                    }
+                    loendur++;
+                    küsimus(stage);
             });
             VBox layout = new VBox(20);
             layout.setStyle("-fx-background-color: #F2F2DC;");
