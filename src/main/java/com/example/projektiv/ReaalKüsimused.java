@@ -131,6 +131,7 @@ public class ReaalKüsimused extends Application {
             layout.getChildren().add(sektordiagramm);
             Scene stseen = new Scene(layout, 625, 525);
             stage.setScene(stseen);
+
         }
     }
 
