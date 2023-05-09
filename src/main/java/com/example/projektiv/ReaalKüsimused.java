@@ -108,15 +108,15 @@ public class ReaalKüsimused extends Application {
             }
             else if(matT.size() == infT.size()){
                 Text tulemus = new Text("Sobid nii informaatikasse kui matemaatikasse");
-                Text protsent = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini informaatikasse.");
+                Text protsent = new Text(protsendid(infT, loetud) + "% vastuseid sobitavad sind kõige paremini informaatikasse.");
                 Text protsent2 = new Text(protsendid(matT, loetud) + "% vastuseid sobitavad sind kõige paremini matemaatikasse.");
 
                 layout.getChildren().addAll(tulemus, protsent, protsent2);
             }
             else if(infT.size() == majT.size()){
                 Text tulemus = new Text("Sobid nii informaatikasse kui majandusse");
-                Text protsent = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini informaatikasse.");
-                Text protsent2 = new Text(protsendid(matT, loetud) + "% vastuseid sobitavad sind kõige paremini majandusse.");
+                Text protsent = new Text(protsendid(infT, loetud) + "% vastuseid sobitavad sind kõige paremini informaatikasse.");
+                Text protsent2 = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini majandusse.");
 
                 layout.getChildren().addAll(tulemus, protsent, protsent2);
 
