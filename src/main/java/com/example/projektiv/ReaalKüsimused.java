@@ -127,8 +127,10 @@ public class ReaalKüsimused extends Application {
                     new PieChart.Data("Majandus", majT.size()),
                     new PieChart.Data("Matemaatika", matT.size())
             );
+
             PieChart sektordiagramm = new PieChart(sektordiagrammiSisu);
             layout.getChildren().add(sektordiagramm);
+
             Scene stseen = new Scene(layout, 625, 525);
             stage.setScene(stseen);
         }
