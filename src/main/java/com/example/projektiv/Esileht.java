@@ -36,6 +36,15 @@ public class Esileht extends Application {
         layout0.getChildren().addAll(iw, pealeht, pealeht2, pealeht3, jätka);
 
         Scene stseen0 = new Scene(layout0, 625, 525);
+        stseen0.widthProperty().addListener((observable, oldValue, newValue) -> {
+            double uusLaius = (double) newValue-60;
+            iw.setFitWidth(uusLaius);
+        });
+
+        stseen0.heightProperty().addListener((observable, oldValue, newValue) ->{
+            double uusKõrgus = (double) newValue-60;
+            iw.setFitHeight(uusKõrgus);
+        });
 
         jätka.setOnAction(e -> {
             // Nime sisestamiseks kast
