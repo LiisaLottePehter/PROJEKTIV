@@ -39,6 +39,9 @@ public class Esileht extends Application {
         Scene stseen0 = new Scene(layout0, 625, 525);
 
         jätka.setOnAction(e -> {
+            //Lisasin nime sisestamiseks kasti
+            Label labelNimi = new Label("Sisesta oma nimi");
+            TextField nimeTekst = new TextField();
             //Valik, mis küsimustikule soovib vastata
             Label label1 = new Label("Millise suuna küsimustikku sooviksid täita, valikus on: reaalsuund(R), loodussuund(L), sotsiaalsuund(S)");
             TextField vastus = new TextField();
@@ -47,7 +50,7 @@ public class Esileht extends Application {
             VBox layout = new VBox(20);
             layout.setStyle("-fx-background-color: #F0F0DC;");
             layout.setPadding(new Insets(30, 30, 30, 30));
-            layout.getChildren().addAll(label1, vastus, valinupp);
+            layout.getChildren().addAll(labelNimi, nimeTekst, label1, vastus, valinupp);
 
             Scene stseen1 = new Scene(layout, 625, 525);
 
@@ -58,6 +61,9 @@ public class Esileht extends Application {
                         ReaalKüsimused reaalKüsimused = new ReaalKüsimused();
                         try {
                             reaalKüsimused.start(stage);
+                            //Ma ei tea kuidas seda nime reaalküsimuste siseselt välja printida või lisada faili
+                            String nimi = (String) nimeTekst.getCharacters();
+
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
@@ -65,6 +71,7 @@ public class Esileht extends Application {
                         LoodusKüsimused loodusKüsimused = new LoodusKüsimused();
                         try {
                             loodusKüsimused.start(stage);
+
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
