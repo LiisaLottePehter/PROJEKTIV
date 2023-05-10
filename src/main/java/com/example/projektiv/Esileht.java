@@ -40,7 +40,7 @@ public class Esileht extends Application {
 
         jätka.setOnAction(e -> {
             //Valik, mis küsimustikule soovib vastata
-            Label label1 = new Label("Millise suuna küsimustikku sooviksid täita, valikus on: reaalsuund(R), loodussuund(L), humanitaarsuund(H)");
+            Label label1 = new Label("Millise suuna küsimustikku sooviksid täita, valikus on: reaalsuund(R), loodussuund(L), sotsiaalsuund(S)");
             TextField vastus = new TextField();
 
             Button valinupp = new Button("Vali");
@@ -67,10 +67,10 @@ public class Esileht extends Application {
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
-                    } else if (valik.equals("H")) {
-                        HumanitaarKüsimused humanitaarKüsimused = new HumanitaarKüsimused();
+                    } else if (valik.equals("S")) {
+                        SotsiaalKüsimused sotsiaalKüsimused = new SotsiaalKüsimused();
                         try {
-                            humanitaarKüsimused.start(stage);
+                            sotsiaalKüsimused.start(stage);
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
