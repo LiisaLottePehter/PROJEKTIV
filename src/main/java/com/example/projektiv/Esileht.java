@@ -51,6 +51,7 @@ public class Esileht extends Application {
 
             Scene stseen1 = new Scene(layout, 625, 525);
 
+
             valinupp.setOnAction(k -> {
                 String valik = vastus.getText();
                     if (valik.equals("R")) {

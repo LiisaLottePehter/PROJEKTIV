@@ -1,8 +1,6 @@
-Kas meeldib matemaatika? - 3 - 2 - 1
-Kas meeldib programmeerimine? - 2 - 3 - 1
-Kas meeldib juhtimine? - 1 - 2 - 3
-Kas meeldib esitluste tegemine? - 1 - 2 - 3
-Kas sa soovid akadeemilist karjääri? - 3 - 1 - 1
-Kas oled valmis töö pärast reisima? - 2 - 3 - 1
-Kas sa oled hea suhtleja? - 1 - 2 - 3
-Kas sulle meeldib grupis töötamine? - 1 - 2 - 3
+Soovid ülikoolis tugevalt matemaatikat õppida - 3 - 2 - 1
+Soovid õppida teoreetilisemaid aineid - 3 - 2 - 1
+Oled huvitatud oma ettevõtte loomise potentsiaalist - 1 - 3 - 2
+Oled huvitatud programmeerimisest - 1 - 3 - 2
+Soovid oma eriala praktilist rakendamist - 1 - 2 - 3
+Oled huvitatud tehnikast ja arvutitest - 1 - 2 - 3
