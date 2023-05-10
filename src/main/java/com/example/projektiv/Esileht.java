@@ -11,8 +11,7 @@ import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 
 public class Esileht extends Application {
 
@@ -39,9 +38,10 @@ public class Esileht extends Application {
         Scene stseen0 = new Scene(layout0, 625, 525);
 
         jätka.setOnAction(e -> {
-            //Lisasin nime sisestamiseks kasti
+            // Nime sisestamiseks kast
             Label labelNimi = new Label("Sisesta oma nimi");
             TextField nimeTekst = new TextField();
+
             //Valik, mis küsimustikule soovib vastata
             Label label1 = new Label("Millise suuna küsimustikku sooviksid täita, valikus on: reaalsuund(R) ja sotsiaalsuund(S)");
             TextField vastus = new TextField();
@@ -61,8 +61,18 @@ public class Esileht extends Application {
                         ReaalKüsimused reaalKüsimused = new ReaalKüsimused();
                         try {
                             reaalKüsimused.start(stage);
-                            //Ma ei tea kuidas seda nime reaalküsimuste siseselt välja printida või lisada faili
-                            String nimi = (String) nimeTekst.getCharacters();
+
+                            //Lisab "vali" nupu vajutamisel testi tegija nime tulemuste faili
+                            try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("tulemused.txt", true), "UTF-8"))) {
+                                bw.write(nimeTekst.getText());
+                                bw.newLine();
+                            } catch (FileNotFoundException m) {
+                                throw new RuntimeException(m);
+                            } catch (UnsupportedEncodingException m) {
+                                throw new RuntimeException(m);
+                            } catch (IOException m) {
+                                throw new RuntimeException(m);
+                            }
 
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
@@ -71,6 +81,18 @@ public class Esileht extends Application {
                         SotsiaalKüsimused sotsiaalKüsimused = new SotsiaalKüsimused();
                         try {
                             sotsiaalKüsimused.start(stage);
+
+                            //Lisab "vali" nupu vajutamisel testi tegija nime tulemuste faili
+                            try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("tulemused.txt", true), "UTF-8"))) {
+                                bw.write(nimeTekst.getText());
+                                bw.newLine();
+                            } catch (FileNotFoundException m) {
+                                throw new RuntimeException(m);
+                            } catch (UnsupportedEncodingException m) {
+                                throw new RuntimeException(m);
+                            } catch (IOException m) {
+                                throw new RuntimeException(m);
+                            }
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
