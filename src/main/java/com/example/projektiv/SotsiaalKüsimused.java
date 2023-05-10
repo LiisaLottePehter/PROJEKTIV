@@ -34,21 +34,55 @@ public class SotsiaalKüsimused {
     }
 
     public void küsimus(Stage stage) {
+        //esimese küsimuse juures on selgitus, kuidas peaks vastama
+        if(loendur == 0){
+            String[] osad = loetud.get(loendur).split(" - ");
+            Label selgitus = new Label("Järgmistele küsimusele vastata numbritega vahemikus 1-3, vastavalt sellele, mis tundub kõige sobilikum");
+            Label label = new Label(osad[0]);
+            RadioButton ajal = new RadioButton(osad[1]);
+            RadioButton ik = new RadioButton(osad[2]);
+            RadioButton ek = new RadioButton(osad[3]);
 
-        if (loendur != loetud.size()) {
+            Button valik = new Button("Vali");
+
+            valik.setOnAction(e -> {
+                if(!(ajal.isSelected() || ik.isSelected() || ek.isSelected())){
+                    Alert valeValik = new Alert(Alert.AlertType.ERROR);
+                    valeValik.setTitle("Viga");
+                    valeValik.setHeaderText("Ei valitud midagi");
+                    valeValik.setContentText("Palun vali uuesti");
+                    valeValik.showAndWait();
+                }
+                else {
+                    if (ajal.isSelected()) {
+                        juuraT.add(1);
+                    } else if (ik.isSelected()) {
+                        psuhhT.add(1);
+                    } else if (ek.isSelected()) {
+                        majT.add(1);
+                    }
+                    loendur++;
+                    küsimus(stage);
+                }
+            });
+            VBox layout = new VBox(20);
+            layout.setStyle("-fx-background-color: #F2F2DC;");
+            layout.setPadding(new Insets(30, 30, 30, 30));
+            layout.getChildren().addAll(selgitus, label, ajal, ik, ek, valik);
+
+            Scene stseen = new Scene(layout, 625, 525);
+            stage.setScene(stseen);
+            stage.show();
+
+        }
+        else if (loendur != loetud.size()) {
             String[] osad = loetud.get(loendur).split(" - ");
             Label label = new Label(osad[0]);
             RadioButton ajal = new RadioButton(osad[1]);
             RadioButton ik = new RadioButton(osad[2]);
             RadioButton ek = new RadioButton(osad[3]);
 
-            ToggleGroup toggleGroup1 = new ToggleGroup();
-            ajal.setToggleGroup(toggleGroup1);
-            ik.setToggleGroup(toggleGroup1);
-            ek.setToggleGroup(toggleGroup1);
-
             Button valik = new Button("Vali");
-
 
             valik.setOnAction(e -> {
                 if(!(ajal.isSelected() || ik.isSelected() || ek.isSelected())){

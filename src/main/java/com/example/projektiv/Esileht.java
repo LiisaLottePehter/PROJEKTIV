@@ -43,7 +43,7 @@ public class Esileht extends Application {
             Label labelNimi = new Label("Sisesta oma nimi");
             TextField nimeTekst = new TextField();
             //Valik, mis küsimustikule soovib vastata
-            Label label1 = new Label("Millise suuna küsimustikku sooviksid täita, valikus on: reaalsuund(R), loodussuund(L), sotsiaalsuund(S)");
+            Label label1 = new Label("Millise suuna küsimustikku sooviksid täita, valikus on: reaalsuund(R) ja sotsiaalsuund(S)");
             TextField vastus = new TextField();
 
             Button valinupp = new Button("Vali");
@@ -63,14 +63,6 @@ public class Esileht extends Application {
                             reaalKüsimused.start(stage);
                             //Ma ei tea kuidas seda nime reaalküsimuste siseselt välja printida või lisada faili
                             String nimi = (String) nimeTekst.getCharacters();
-
-                        } catch (Exception ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    } else if (valik.equals("L")) {
-                        LoodusKüsimused loodusKüsimused = new LoodusKüsimused();
-                        try {
-                            loodusKüsimused.start(stage);
 
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);

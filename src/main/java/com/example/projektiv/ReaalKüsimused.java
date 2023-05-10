@@ -35,17 +35,52 @@ public class ReaalKüsimused extends Application {
         küsimus(stage);
     }
     public void küsimus(Stage stage){
-        if(loendur != loetud.size()) {
+        //esimese küsimuse juures on selgitus, kuidas peaks vastama
+        if(loendur == 0){
             String[] osad = loetud.get(loendur).split(" - ");
+            Label selgitus = new Label("Järgmistele küsimusele vastata numbritega vahemikus 1-3, " +
+                    "vastavalt sellele, mis tundub kõige sobilikum");
             Label label = new Label(osad[0]);
             RadioButton mat = new RadioButton(osad[1]);
             RadioButton inf = new RadioButton(osad[2]);
             RadioButton arvTeh = new RadioButton(osad[3]);
 
-            ToggleGroup toggleGroup1 = new ToggleGroup();
-            mat.setToggleGroup(toggleGroup1);
-            inf.setToggleGroup(toggleGroup1);
-            arvTeh.setToggleGroup(toggleGroup1);
+            Button valik = new Button("Vali");
+            valik.setOnAction(e -> {
+                if(!(mat.isSelected() || inf.isSelected() || arvTeh.isSelected())){
+                    Alert valeValik = new Alert(Alert.AlertType.ERROR);
+                    valeValik.setTitle("Viga");
+                    valeValik.setHeaderText("Ei valitud midagi");
+                    valeValik.setContentText("Palun vali uuesti");
+                    valeValik.showAndWait();
+                }else {
+                    if (mat.isSelected()) {
+                        matT.add(1);
+                    } else if (inf.isSelected()) {
+                        infT.add(1);
+                    } else if (arvTeh.isSelected()) {
+                        arvTehT.add(1);
+                    }
+
+                    loendur++;
+                    küsimus(stage);
+                }
+            });
+            VBox layout = new VBox(20);
+            layout.setStyle("-fx-background-color: #F2F2DC;");
+            layout.setPadding(new Insets(30, 30, 30, 30));
+            layout.getChildren().addAll(selgitus, label, mat, inf, arvTeh, valik);
+
+            Scene stseen = new Scene(layout, 625, 525);
+            stage.setScene(stseen);
+            stage.show();
+        }
+        else if(loendur != loetud.size()) {
+            String[] osad = loetud.get(loendur).split(" - ");
+            Label label = new Label(osad[0]);
+            RadioButton mat = new RadioButton(osad[1]);
+            RadioButton inf = new RadioButton(osad[2]);
+            RadioButton arvTeh = new RadioButton(osad[3]);
 
             Button valik = new Button("Vali");
             valik.setOnAction(e -> {
