@@ -6,10 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -52,18 +49,24 @@ public class ReaalKüsimused extends Application {
 
             Button valik = new Button("Vali");
             valik.setOnAction(e -> {
-                if(mat.isSelected()){
-                    matT.add(1);
-                }
-                else if(inf.isSelected()){
-                    infT.add(1);
-                }
-                else if(arvTeh.isSelected()){
-                    arvTehT.add(1);
-                }
+                if(!(mat.isSelected() || inf.isSelected() || arvTeh.isSelected())){
+                    Alert valeValik = new Alert(Alert.AlertType.ERROR);
+                    valeValik.setTitle("Viga");
+                    valeValik.setHeaderText("Ei valitud midagi");
+                    valeValik.setContentText("Palun vali uuesti");
+                    valeValik.showAndWait();
+                }else {
+                    if (mat.isSelected()) {
+                        matT.add(1);
+                    } else if (inf.isSelected()) {
+                        infT.add(1);
+                    } else if (arvTeh.isSelected()) {
+                        arvTehT.add(1);
+                    }
 
-                loendur++;
-                küsimus(stage);
+                    loendur++;
+                    küsimus(stage);
+                }
             });
             VBox layout = new VBox(20);
             layout.setStyle("-fx-background-color: #F2F2DC;");

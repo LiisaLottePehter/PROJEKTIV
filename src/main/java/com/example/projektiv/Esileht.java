@@ -83,16 +83,11 @@ public class Esileht extends Application {
                             throw new RuntimeException(ex);
                         }
                     }else {
-                        Stage uus = new Stage();
-                        VBox veateateaken = new VBox(10);
-                        layout.setStyle("-fx-background-color: #F0F0DC;");
-                        layout.setPadding(new Insets(30, 30, 30, 30));
-                        Text valeValik = new Text("Vale valik, palun valige uuesti.");
-                        valeValik.setTextAlignment(TextAlignment.CENTER);
-                        veateateaken.getChildren().add(valeValik);
-                        Scene veateateStseen = new Scene(veateateaken, 200, 100);
-                        uus.setScene(veateateStseen);
-                        uus.show();
+                        Alert valeValik = new Alert(Alert.AlertType.ERROR);
+                        valeValik.setTitle("Viga");
+                        valeValik.setHeaderText("Vale sisestus");
+                        valeValik.setContentText("Palun sisesta valik uuesti.");
+                        valeValik.showAndWait();
                     }
             });
             stage.setScene(stseen1);
