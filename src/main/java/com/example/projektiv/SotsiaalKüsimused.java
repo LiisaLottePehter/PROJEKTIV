@@ -37,7 +37,7 @@ public class SotsiaalKüsimused {
         //esimese küsimuse juures on selgitus, kuidas peaks vastama
         if(loendur == 0){
             String[] osad = loetud.get(loendur).split(" - ");
-            Label selgitus = new Label("Järgmistele küsimusele vastata numbritega vahemikus 1-3, vastavalt sellele, mis tundub kõige sobilikum");
+            Label selgitus = new Label("Järgmistele küsimusele vastata numbritega vahemikus 1-3, vastavalt sellele, mis tundub kõige sobilikum. \n1 - kehtib sinu kohta vähe, 2 - kehtib sinu kohta mingil määral, 3 - kehtib sinu kohta palju");
             Label label = new Label(osad[0]);
             RadioButton ajal = new RadioButton(osad[1]);
             RadioButton ik = new RadioButton(osad[2]);

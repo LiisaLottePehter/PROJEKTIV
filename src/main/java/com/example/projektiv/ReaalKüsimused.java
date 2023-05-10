@@ -39,7 +39,7 @@ public class ReaalKüsimused extends Application {
         if(loendur == 0){
             String[] osad = loetud.get(loendur).split(" - ");
             Label selgitus = new Label("Järgmistele küsimusele vastata numbritega vahemikus 1-3, " +
-                    "vastavalt sellele, mis tundub kõige sobilikum");
+                    "vastavalt sellele, mis tundub kõige sobilikum. \n1 - kehtib sinu kohta vähe, 2 - kehtib sinu kohta mingil määral, 3 - kehtib sinu kohta palju");
             Label label = new Label(osad[0]);
             RadioButton mat = new RadioButton(osad[1]);
             RadioButton inf = new RadioButton(osad[2]);

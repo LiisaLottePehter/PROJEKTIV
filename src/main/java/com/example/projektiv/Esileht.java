@@ -28,7 +28,7 @@ public class Esileht extends Application {
 
         Label pealeht = new Label("Pole kindel, millist eriala õppida ning tahaksid, et keegi teeks sinu valimise kergemaks?");
         Label pealeht2 = new Label("Selleks oleme loonud programmi, mis aitab sul otsustada.");
-        Label pealeht3 = new Label("Vajutades nupule 'Jätka' saad valida kolme suuna vahel.");
+        Label pealeht3 = new Label("Vajutades nupule 'Jätka' saad valida kahe suuna vahel.");
         Button jätka = new Button("Jätka");
         VBox layout0 = new VBox(20);
         layout0.setStyle("-fx-background-color: #F2F2DC;");
