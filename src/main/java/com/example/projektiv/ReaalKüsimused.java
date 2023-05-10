@@ -90,7 +90,7 @@ public class ReaalKüsimused extends Application {
 
             }
             else if(arvTehT.size() > matT.size() && arvTehT.size() > infT.size()){
-                Text tulemus = new Text("Sobid majandusse");
+                Text tulemus = new Text("Sobid arvutitehnikuks");
                 Text protsent = new Text(protsendid(arvTehT, loetud) + "% vastuseid sobitavad sind kõige paremini arvutitehnikasse.");
                 layout.getChildren().addAll(tulemus, protsent);
 
@@ -102,7 +102,7 @@ public class ReaalKüsimused extends Application {
 
             }
             else if(matT.size() == arvTehT.size()){
-                Text tulemus = new Text("Sobid nii majandusse kui matemaatikasse");
+                Text tulemus = new Text("Sobid nii arvutitehnikuks kui matemaatikasse");
                 Text protsent = new Text(protsendid(arvTehT, loetud) + "% vastuseid sobitavad sind kõige paremini arvutitehnikasse.");
                 Text protsent2 = new Text(protsendid(matT, loetud) + "% vastuseid sobitavad sind kõige paremini matemaatikasse.");
 
