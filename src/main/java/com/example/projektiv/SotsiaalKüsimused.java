@@ -10,8 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class SotsiaalKüsimused {
@@ -119,40 +118,35 @@ public class SotsiaalKüsimused {
             layout.setPadding(new Insets(30, 30, 30, 30));
 
             //Võrdleme, millisele erialale sobib kõige paremini
-            if(juuraT.size() > majT.size() && juuraT.size()>psuhhT.size()){
+            if (juuraT.size() > majT.size() && juuraT.size() > psuhhT.size()) {
                 Text tulemus = new Text("Sobid õigusteadusesse");
                 Text protsent = new Text(protsendid(juuraT, loetud) + "% vastuseid sobitavad sind kõige paremini õigusteadusesse.");
                 layout.getChildren().addAll(tulemus, protsent);
 
-            }
-            else if(majT.size() > juuraT.size() && majT.size() > psuhhT.size()){
+            } else if (majT.size() > juuraT.size() && majT.size() > psuhhT.size()) {
                 Text tulemus = new Text("Sobid majandusse");
                 Text protsent = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini majandusse.");
                 layout.getChildren().addAll(tulemus, protsent);
 
-            }
-            else if(psuhhT.size() > majT.size() && psuhhT.size() >juuraT.size()){
+            } else if (psuhhT.size() > majT.size() && psuhhT.size() > juuraT.size()) {
                 Text tulemus = new Text("Sobid psühholoogiasse");
                 Text protsent = new Text(protsendid(psuhhT, loetud) + "% vastuseid sobitavad sind kõige paremini psühholoogiasse.");
                 layout.getChildren().addAll(tulemus, protsent);
 
-            }
-            else if(juuraT.size() == majT.size()){
+            } else if (juuraT.size() == majT.size()) {
                 Text tulemus = new Text("Sobid nii majandusse kui õigusteadusesse");
                 Text protsent = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini majandusse.");
                 Text protsent2 = new Text(protsendid(juuraT, loetud) + "% vastuseid sobitavad sind kõige paremini õigusteadusesse.");
 
                 layout.getChildren().addAll(tulemus, protsent, protsent2);
 
-            }
-            else if(juuraT.size() == psuhhT.size()){
+            } else if (juuraT.size() == psuhhT.size()) {
                 Text tulemus = new Text("Sobid nii õigusteadusesse kui psühholoogiasse");
                 Text protsent = new Text(protsendid(juuraT, loetud) + "% vastuseid sobitavad sind kõige paremini õigusteadusesse.");
                 Text protsent2 = new Text(protsendid(psuhhT, loetud) + "% vastuseid sobitavad sind kõige paremini psühholoogiasse.");
 
                 layout.getChildren().addAll(tulemus, protsent, protsent2);
-            }
-            else if(psuhhT.size() == majT.size()){
+            } else if (psuhhT.size() == majT.size()) {
                 Text tulemus = new Text("Sobid nii psühholoogiasse kui majandusse");
                 Text protsent = new Text(protsendid(psuhhT, loetud) + "% vastuseid sobitavad sind kõige paremini psühholoogiasse.");
                 Text protsent2 = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini majandusse.");
@@ -171,8 +165,22 @@ public class SotsiaalKüsimused {
             layout.getChildren().add(sektordiagramm);
             Scene stseen = new Scene(layout, 625, 525);
             stage.setScene(stseen);
-        }
 
+            try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("tulemused.txt", true), "UTF-8"))) {
+                bw.write("Õigusteadus - " + protsendid(juuraT, loetud));
+                bw.newLine();
+                bw.write("Majandus - " + protsendid(majT, loetud));
+                bw.newLine();
+                bw.write("Psühholoogia - " + protsendid(psuhhT, loetud));
+                bw.newLine();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
     public String protsendid(ArrayList<Integer> üksList, ArrayList<String> teineList){
         int protsent = üksList.size() * 100/ teineList.size();

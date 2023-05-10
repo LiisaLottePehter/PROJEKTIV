@@ -11,8 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.*;
 import java.util.ArrayList;
 
 public class ReaalKüsimused extends Application {
@@ -171,6 +170,20 @@ public class ReaalKüsimused extends Application {
 
             Scene stseen = new Scene(layout, 625, 525);
             stage.setScene(stseen);
+            try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("tulemused.txt", true), "UTF-8"))) {
+                bw.write("Informaatika - " + protsendid(infT, loetud));
+                bw.newLine();
+                bw.write("Matemaatika - " + protsendid(matT, loetud));
+                bw.newLine();
+                bw.write("Arvutitehnika - " + protsendid(arvTehT, loetud));
+                bw.newLine();
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (UnsupportedEncodingException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
 
