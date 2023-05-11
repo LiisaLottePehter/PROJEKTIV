@@ -123,6 +123,13 @@ public class ReaalKüsimused extends Application {
                 layout.getChildren().addAll(tulemus, protsent);
 
             }
+            else if (infT.size() == arvTehT.size() && arvTehT.size() == matT.size()) {
+                Text tulemus = new Text("Sobid igale erialale võrdselt!");
+                Text protsent = new Text(protsendid(infT, loetud) + "% vastuseid sobitavad sind kõige paremini informaatikasse.");
+                Text protsent2 = new Text(protsendid(arvTehT, loetud) + "% vastuseid sobitavad sind kõige paremini arvutitehnikasse.");
+                Text protsent3 = new Text(protsendid(matT, loetud) + "% vastuseid sobitavad sind kõige paremini matemaatikasse.");
+                layout.getChildren().addAll(tulemus, protsent, protsent2, protsent3);
+            }
             else if(arvTehT.size() > matT.size() && arvTehT.size() > infT.size()){
                 Text tulemus = new Text("Sobid arvutitehnikuks");
                 Text protsent = new Text(protsendid(arvTehT, loetud) + "% vastuseid sobitavad sind kõige paremini arvutitehnikasse.");
@@ -158,6 +165,8 @@ public class ReaalKüsimused extends Application {
                 layout.getChildren().addAll(tulemus, protsent, protsent2);
 
             }
+
+
             //loome sektordiagrammi, kus tehakse võrdlus kõigi erialade vahel
             ObservableList<PieChart.Data> sektordiagrammiSisu = FXCollections.observableArrayList(
                     new PieChart.Data("Informaatika", infT.size()),

@@ -74,6 +74,7 @@ public class SotsiaalKüsimused {
             stage.show();
 
         }
+
         else if (loendur != loetud.size()) {
             String[] osad = loetud.get(loendur).split(" - ");
             Label label = new Label(osad[0]);
@@ -123,7 +124,16 @@ public class SotsiaalKüsimused {
                 Text protsent = new Text(protsendid(juuraT, loetud) + "% vastuseid sobitavad sind kõige paremini õigusteadusesse.");
                 layout.getChildren().addAll(tulemus, protsent);
 
-            } else if (majT.size() > juuraT.size() && majT.size() > psuhhT.size()) {
+            }
+            //Kui kõikide erialade tulemused on võrdsed
+            else if (psuhhT.size() == majT.size() && majT.size() == juuraT.size()) {
+                Text tulemus = new Text("Sobid igale erialale võrdselt!");
+                Text protsent = new Text(protsendid(psuhhT, loetud) + "% vastuseid sobitavad sind kõige paremini psühholoogiasse.");
+                Text protsent2 = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini majandusse.");
+                Text protsent3 = new Text(protsendid(juuraT, loetud) + "% vastuseid sobitavad sind kõige paremini õigusteadusesse.");
+                layout.getChildren().addAll(tulemus, protsent, protsent2, protsent3);
+            }
+            else if (majT.size() > juuraT.size() && majT.size() > psuhhT.size()) {
                 Text tulemus = new Text("Sobid majandusse");
                 Text protsent = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini majandusse.");
                 layout.getChildren().addAll(tulemus, protsent);
@@ -152,8 +162,8 @@ public class SotsiaalKüsimused {
                 Text protsent2 = new Text(protsendid(majT, loetud) + "% vastuseid sobitavad sind kõige paremini majandusse.");
 
                 layout.getChildren().addAll(tulemus, protsent, protsent2);
-
             }
+
             //loome sektordiagrammi, kus tehakse võrdlus kõigi erialade vahel
             ObservableList<PieChart.Data> sektordiagrammiSisu = FXCollections.observableArrayList(
                     new PieChart.Data("Õigusteadus", juuraT.size()),
