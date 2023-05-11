@@ -52,7 +52,10 @@ public class Esileht extends Application {
             TextField nimeTekst = new TextField();
 
             //Valik, mis küsimustikule soovib vastata
-            Label label1 = new Label("Millise suuna küsimustikku sooviksid täita, valikus on: reaalsuund(R) ja sotsiaalsuund(S)");
+            Label label1 = new Label("Millise suuna küsimustikku sooviksid täita? Valikus on: reaalsuund(R) ja sotsiaalsuund(S)\n" +
+                    "\n" +
+                    "Reaalsuuna testis hinnatakse sinu sobivust Informaatika, Matemaatika ja Arvutitehnika erialade vahel.\n" +
+                    "Sotsiaalsuuna testis hinnatakse sinu sobivust Õigusteaduse, Majanduse ja Psühholoogia erialade vahel.");
             TextField vastus = new TextField();
 
             Button valinupp = new Button("Vali");
