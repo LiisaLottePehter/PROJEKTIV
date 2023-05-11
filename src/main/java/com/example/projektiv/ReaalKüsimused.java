@@ -170,6 +170,7 @@ public class ReaalKüsimused extends Application {
 
             Scene stseen = new Scene(layout, 625, 525);
             stage.setScene(stseen);
+            //Faili kirjutamine
             try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("tulemused.txt", true), "UTF-8"))) {
                 bw.write("Informaatika - " + protsendid(infT, loetud));
                 bw.newLine();

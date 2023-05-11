@@ -165,7 +165,7 @@ public class SotsiaalKüsimused {
             layout.getChildren().add(sektordiagramm);
             Scene stseen = new Scene(layout, 625, 525);
             stage.setScene(stseen);
-
+            //Faili kirjutamine
             try (BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("tulemused.txt", true), "UTF-8"))) {
                 bw.write("Õigusteadus - " + protsendid(juuraT, loetud));
                 bw.newLine();
